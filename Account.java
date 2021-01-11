@@ -5,31 +5,13 @@ public class Account {
     private String account_phone_number;
     private double balance;
     private String pin;
-
-//    constructor
-//    is a function having same name as class
-//    always public function
-//    no return type
-//    can accept multiple agruments as function parameters
-
-//    Constructor having pin, name, phone_number  arguments <String, String, String>
+    public int cashOutCharge;
     public Account(String name, String account_phone_number, String pin){
         this.account_holder_name = name;
         this.account_phone_number = account_phone_number;
         this.pin = pin;
     }
 
-//    Constructor without pin number  arguments <String, String>
-  /*  public Account(String name, String account_pnone_number){
-        this.account_holder_name = name;
-        this.account_pnone_number = account_pnone_number;
-    }
-    */
-
-//    Method overloading  []
-//    Polymorphism
-
-//    update pin; return true if success or return false if failed
     public boolean pin_update(String old_pin, String new_pin){
         if(old_pin == this.pin){
             this.pin = new_pin;
@@ -46,6 +28,10 @@ public class Account {
         String new_pin_info = getAccount_holder_name()+ ", Pin: " + this.pin;
         return new_pin_info;
     }
+    public void setCashOutCharge(int cashOutCharge){
+        this.cashOutCharge = cashOutCharge;
+
+   }
 
     public void add_money(double amount){
         this.balance += amount;
@@ -59,7 +45,7 @@ public class Account {
         }
         else{
             if (balance >= amount){
-                balance -= amount;
+                balance = balance - amount*this.cashOutCharge;
                 System.out.println("Cash out: " + amount);
             }
 
